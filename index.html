@@ -5,11 +5,101 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Xəbər Portalı</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 15px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0 0;
+      flex-wrap: wrap;
+    }
+
+    nav ul li {
+      margin-right: 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .search-box {
+      margin-top: 10px;
+    }
+
+    .search-box input {
+      padding: 5px;
+      width: 200px;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .filters button, .category-filter {
+      padding: 8px 12px;
+      border: none;
+      background-color: #004080;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .category-filter {
+      background-color: #0066cc;
+    }
+
+    .news-card {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 6px;
+      background-color: #f9f9f9;
+    }
+
+    footer.contact-section {
+      background-color: #004080;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+      font-size: 24px;
+      color: white;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
   <header>
     <div class="logo">XƏBƏRPORTALI</div>
-      <nav>
+    <nav>
       <ul>
         <li><a href="esas-xeberler.html">Əsas xəbərlər</a></li>
         <li><a href="son-xeberler.html">Son xəbərlər</a></li>
@@ -21,11 +111,11 @@
         <li><a href="medeniyyet.html">Mədəniyyət</a></li>
         <li><a href="dunya.html">Dünya</a></li>
         <li><a href="analitika.html">Analitika</a></li>
-    </ul>
-<div class="search-box">
-  <input type="text" placeholder="Axtar..." />
-  <span class="search-icon">🔍</span>
-</div>
+      </ul>
+      <div class="search-box">
+        <input type="text" placeholder="Axtar..." />
+        <span class="search-icon">🔍</span>
+      </div>
     </nav>
   </header>
 
@@ -38,21 +128,61 @@
       <button>BU AY</button>
       <button>KEÇƏN HƏFTƏ</button>
       <button>KEÇƏN AY</button>
+
+      <select class="category-filter">
+        <option disabled selected>Kateqoriyanı seçin</option>
+        <option value="siyaset">Siyasət</option>
+        <option value="idman">İdman</option>
+        <option value="iqtisadiyyat">İqtisadiyyat</option>
+        <option value="medeniyyet">Mədəniyyət</option>
+        <option value="dunya">Dünya</option>
+      </select>
     </div>
 
     <div class="news-list">
-      <!-- Xəbər kartları -->
+      <div class="news-card" data-category="siyaset">
+        <h3>Prezident yeni iqtisadi islahatlar elan etdi</h3>
+        <p>Bu gün keçirilən forumda prezident bir sıra yeni islahat paketlərini təqdim etdi...</p>
+      </div>
+
+      <div class="news-card" data-category="idman">
+        <h3>Azərbaycan millisi Avro-2024-ə vəsiqə qazandı</h3>
+        <p>Futbol üzrə yığmamız böyük uğura imza atdı...</p>
+      </div>
+
+      <div class="news-card" data-category="iqtisadiyyat">
+        <h3>İqtisadi artım proqnozu yeniləndi</h3>
+        <p>Maliyyə Nazirliyi bu ilin sonuna olan artım faizini açıqladı...</p>
+      </div>
     </div>
   </main>
-<footer class="contact-section">
-  <h3>Bizimlə əlaqə</h3>
-  <div class="social-icons">
-    <a href="https://www.instagram.com/yourprofile" target="_blank" aria-label="Instagram" class="icon instagram">📸</a>
-    <a href="mailto:haqverdiyev056@gmail.com" target="_blank" aria-label="Gmail" class="icon gmail">📧</a>
-    <a href="https://www.linkedin.com/in/m%C9%99h%C9%99mmm%C9%99d%C9%99li-haqverdiyev-724295340/" target="_blank" aria-label="LinkedIn" class="icon linkedin">🔗</a>
-    <a href="https://wa.me/yourphonenumber" target="_blank" aria-label="WhatsApp" class="icon whatsapp">💬</a>
-  </div>
-</footer>
-  <script src="script.js"></script>
+
+  <footer class="contact-section">
+    <h3>Bizimlə əlaqə</h3>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/yourprofile" target="_blank" aria-label="Instagram" class="icon instagram">📸</a>
+      <a href="mailto:haqverdiyev056@gmail.com" target="_blank" aria-label="Gmail" class="icon gmail">📧</a>
+      <a href="https://www.linkedin.com/in/m%C9%99h%C9%99mmm%C9%99d%C9%99li-haqverdiyev-724295340/" target="_blank" aria-label="LinkedIn" class="icon linkedin">🔗</a>
+      <a href="https://wa.me/yourphonenumber" target="_blank" aria-label="WhatsApp" class="icon whatsapp">💬</a>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const categoryFilter = document.querySelector(".category-filter");
+      const newsCards = document.querySelectorAll(".news-card");
+
+      categoryFilter.addEventListener("change", function () {
+        const selectedCategory = this.value;
+        newsCards.forEach((card) => {
+          if (card.dataset.category === selectedCategory || selectedCategory === "all") {
+            card.style.display = "block";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
