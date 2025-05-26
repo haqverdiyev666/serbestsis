@@ -80,3 +80,118 @@ filterButtons.forEach(button => {
     displayNews(filteredNews);
   });
 });
+// Modal açma funksiyası
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden"; // Scroll-u blokla
+        
+        // Modal açıldıqda animasiya
+        modal.style.opacity = "0";
+        setTimeout(() => {
+            modal.style.opacity = "1";
+        }, 10);
+    }
+}
+
+// Modal bağlama funksiyası
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.opacity = "0";
+        setTimeout(() => {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // Scroll-u geri qaytar
+        }, 300);
+    }
+}
+
+// Modal kənarına kliklədikdə bağlanması
+window.onclick = function(event) {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        if (event.target == modal) {
+            closeModal(modal.id);
+        }
+    });
+}
+
+// ESC düyməsi ilə modal bağlama
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const openModal = document.querySelector('.modal[style*="block"]');
+        if (openModal) {
+            closeModal(openModal.id);
+        }
+    }
+});
+
+// Səhifə yüklənəndə işləyən funksiyalar
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Breaking news animasiyası
+    const breakingNews = document.querySelector('.breaking-news');
+    if (breakingNews) {
+        setInterval(() => {
+            breakingNews.style.transform = 'scale(1.01)';
+            setTimeout(() => {
+                breakingNews.style.transform = 'scale(1)';
+            }, 100);
+        }, 3000);
+    }
+    
+    // News card-lar üçün hover effekti
+    const newsCards = document.querySelectorAll('.news-card');
+    newsCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+    
+    // Scroll animasiyası
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+    // Scroll animasiyası üçün elementləri seç
+    const animateElements = document.querySelectorAll('.news-card, .section-title');
+    animateElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+    // Navigation menu üçün smooth scroll
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+});
+    images.forEach(img => imageObserver.observe(img));
+}
